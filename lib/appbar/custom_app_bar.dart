@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/helpers/strings.dart';
 
 class MyAppBar extends StatelessWidget {
   MyAppBar({super.key});
@@ -26,7 +27,7 @@ class MyAppBar extends StatelessWidget {
                 child: TextField(
                   controller: _controller,
                   decoration: const InputDecoration(
-                    hintText: 'Start typing to search...',
+                    hintText: Strings.searchBarHint,
                   ),
                 ),
               ),
@@ -39,7 +40,7 @@ class MyAppBar extends StatelessWidget {
                 child: RawMaterialButton(
                   elevation: 0,
                   onPressed: () => _controller.clear(),
-                  fillColor: Colors.blue,
+                  fillColor: Colors.lightBlue,
                   shape: const CircleBorder(),
                   child: const Icon(
                     color: Colors.white,
