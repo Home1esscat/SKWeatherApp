@@ -4,9 +4,6 @@ import 'package:weather_app/helpers/utils.dart';
 
 import '../helpers/strings.dart';
 
-/*I not very happy to use StatefulWidget,
- but in this case its the most suitable*/
-
 class FaqScreen extends StatefulWidget {
   const FaqScreen({super.key});
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/api/weather_api.dart';
 import 'package:weather_app/helpers/strings.dart';
 
 class MyAppBar extends StatelessWidget {
@@ -39,7 +40,10 @@ class MyAppBar extends StatelessWidget {
                 height: 44,
                 child: RawMaterialButton(
                   elevation: 0,
-                  onPressed: () => _controller.clear(),
+                  onPressed: () => {
+                    _controller.clear(),
+                    WeatherApi().getWeatherInCity('Odessa')
+                  },
                   fillColor: Colors.lightBlue,
                   shape: const CircleBorder(),
                   child: const Icon(
