@@ -4,17 +4,19 @@ import 'package:weather_app/helpers/strings.dart';
 class CitiesGrid extends StatelessWidget {
   const CitiesGrid({
     Key? key,
-    required this.onCityCardPress,
+    required this.onNewYorkPress,
+    required this.onParisPress,
+    required this.onDubaiPress,
+    required this.onLondonPress,
   }) : super(key: key);
 
-  final Function onCityCardPress;
-
-  /*I use plain widgets instead of ListView.builder 
-  to avoid using shrinkWrap*/
+  final Function onNewYorkPress;
+  final Function onLondonPress;
+  final Function onDubaiPress;
+  final Function onParisPress;
 
   @override
   Widget build(BuildContext context) {
-    //dynamic dimensions
     double cardHeight = MediaQuery.of(context).size.height / 3;
 
     return Column(
@@ -33,7 +35,7 @@ class CitiesGrid extends StatelessWidget {
           height: 35,
         ),
         GestureDetector(
-          onTap: () => {onCityCardPress()},
+          onTap: () => {onNewYorkPress()},
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Stack(
@@ -74,7 +76,7 @@ class CitiesGrid extends StatelessWidget {
           ),
         ),
         GestureDetector(
-          onTap: () => {onCityCardPress()},
+          onTap: () => {onLondonPress()},
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Stack(
@@ -115,7 +117,7 @@ class CitiesGrid extends StatelessWidget {
           ),
         ),
         GestureDetector(
-          onTap: () => {onCityCardPress()},
+          onTap: () => {onDubaiPress()},
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Stack(
@@ -156,7 +158,7 @@ class CitiesGrid extends StatelessWidget {
           ),
         ),
         GestureDetector(
-          onTap: () => {onCityCardPress()},
+          onTap: () => {onParisPress()},
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Stack(

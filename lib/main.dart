@@ -18,9 +18,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // debugPaintSizeEnabled = true;
     return Provider<WeatherCubit>(
-      create: (context) => WeatherCubit(weatherApi),
+      create: (context) => WeatherCubit()..getWeather('Odessa'),
       child: MaterialApp(
         theme: AppTheme.dark,
         debugShowCheckedModeBanner: false,

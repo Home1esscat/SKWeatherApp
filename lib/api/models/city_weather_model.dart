@@ -122,17 +122,13 @@ class Main {
     required this.tempMax,
     required this.pressure,
     required this.humidity,
-    required this.seaLevel,
-    required this.grndLevel,
   });
-  late final double temp;
+  late final num temp;
   late final double feelsLike;
   late final double tempMin;
   late final double tempMax;
   late final int pressure;
   late final int humidity;
-  late final int seaLevel;
-  late final int grndLevel;
 
   Main.fromJson(Map<String, dynamic> json) {
     temp = json['temp'];
@@ -141,8 +137,6 @@ class Main {
     tempMax = json['temp_max'];
     pressure = json['pressure'];
     humidity = json['humidity'];
-    seaLevel = json['sea_level'];
-    grndLevel = json['grnd_level'];
   }
 
   Map<String, dynamic> toJson() {
@@ -153,8 +147,6 @@ class Main {
     _data['temp_max'] = tempMax;
     _data['pressure'] = pressure;
     _data['humidity'] = humidity;
-    _data['sea_level'] = seaLevel;
-    _data['grnd_level'] = grndLevel;
     return _data;
   }
 }
@@ -163,23 +155,20 @@ class Wind {
   Wind({
     required this.speed,
     required this.deg,
-    required this.gust,
   });
   late final double speed;
   late final int deg;
-  late final double gust;
 
   Wind.fromJson(Map<String, dynamic> json) {
     speed = json['speed'];
     deg = json['deg'];
-    gust = json['gust'];
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['speed'] = speed;
     _data['deg'] = deg;
-    _data['gust'] = gust;
+
     return _data;
   }
 }
