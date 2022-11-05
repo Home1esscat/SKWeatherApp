@@ -237,7 +237,7 @@ class Home extends StatelessWidget {
                                 Radius.circular(30),
                               ),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: CircularProgressIndicator(),
                             ),
                           ),

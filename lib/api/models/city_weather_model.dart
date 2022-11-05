@@ -69,8 +69,8 @@ class Coord {
     required this.lon,
     required this.lat,
   });
-  late final double lon;
-  late final double lat;
+  late final num lon;
+  late final num lat;
 
   Coord.fromJson(Map<String, dynamic> json) {
     lon = json['lon'];
@@ -156,8 +156,8 @@ class Wind {
     required this.speed,
     required this.deg,
   });
-  late final double speed;
-  late final int deg;
+  late final num speed;
+  late final num deg;
 
   Wind.fromJson(Map<String, dynamic> json) {
     speed = json['speed'];

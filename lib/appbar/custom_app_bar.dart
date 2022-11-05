@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/api/weather_api.dart';
 import 'package:weather_app/helpers/strings.dart';
+
+import '../bloc/weather_cubit.dart';
 
 class MyAppBar extends StatelessWidget {
   MyAppBar({super.key});
 
   final _controller = TextEditingController();
+  final WeatherApi weatherApi = WeatherApi();
 
   @override
   Widget build(BuildContext context) {
+    var cubit = context.read<WeatherCubit>();
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Container(
@@ -40,10 +45,11 @@ class MyAppBar extends StatelessWidget {
                 height: 44,
                 child: RawMaterialButton(
                   elevation: 0,
-                  onPressed: () => {
-                    _controller.clear(),
-                    WeatherApi().getWeatherInCity('Odessa')
-                  },
+                  onPressed: (() {
+                    weatherApi.getCitySuggestion('одесса');
+                  })
+                  //cubit.getWeather(_controller.text)
+                  ,
                   fillColor: Colors.lightBlue,
                   shape: const CircleBorder(),
                   child: const Icon(
