@@ -7,26 +7,26 @@ import '../api/weather_api.dart';
 class CitySuggestionCubit extends Cubit<CitySuggestionState> {
   final WeatherApi weatherApi = WeatherApi();
 
-  CitySuggestionCubit() : super(WeatherEmptyState());
+  CitySuggestionCubit() : super(CitySuggestionEmpty());
 
   List<CityList> internalList = [];
 
   Future<void> setWeather(List<CityList> list) async {
     try {
-      emit(WeatherEmptyState());
+      emit(CitySuggestionEmpty());
       final listCities = list;
-      emit(WeatherLoadedState(cityListModel: listCities));
+      emit(CitySuggestionLoaded(cityListModel: listCities));
       internalList = list;
     } catch (e) {
       emit(
-        WeatherErrorState(
+        CitySuggestionError(
           errorMessage: e.toString(),
         ),
       );
     }
   }
 
-  Future<List<CityList>> getSuggestionsCityList(List<CityList> list) async {
+  Future<List<CityList>> getSuggestionsCityList() async {
     return internalList;
   }
 }

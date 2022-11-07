@@ -2,14 +2,14 @@ import 'package:weather_app/api/models/city_suggestiond_model.dart';
 
 class CitySuggestionState {}
 
-class WeatherLoadedState extends CitySuggestionState {
+class CitySuggestionLoaded extends CitySuggestionState {
   List<CityList> cityListModel;
-  WeatherLoadedState({required this.cityListModel});
+  CitySuggestionLoaded({required this.cityListModel});
 }
 
-class WeatherErrorState extends CitySuggestionState {
+class CitySuggestionError extends CitySuggestionState {
   String errorMessage;
-  WeatherErrorState({required this.errorMessage});
+  CitySuggestionError({required this.errorMessage});
 }
 
-class WeatherEmptyState extends CitySuggestionState {}
+class CitySuggestionEmpty extends CitySuggestionState {}

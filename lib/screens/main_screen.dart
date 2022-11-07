@@ -151,7 +151,7 @@ class Home extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: tileHeight * 4.5, right: 16, left: 16),
       child: Container(
-        height: tileHeight * 5,
+        height: tileHeight * 4.7,
         decoration: const BoxDecoration(
           color: CustomColors.transparentWhite,
           borderRadius: BorderRadius.all(
@@ -176,7 +176,7 @@ class Home extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: tileHeight * 4.5, right: 16, left: 16),
       child: Container(
-        height: tileHeight * 5,
+        height: tileHeight * 4.7,
         decoration: const BoxDecoration(
           color: CustomColors.transparentWhite,
           borderRadius: BorderRadius.all(
@@ -194,7 +194,7 @@ class Home extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: tileHeight * 4.5, right: 16, left: 16),
       child: Container(
-        height: tileHeight * 5,
+        height: tileHeight * 4.7,
         decoration: const BoxDecoration(
           color: CustomColors.transparentWhite,
           borderRadius: BorderRadius.all(
@@ -232,8 +232,9 @@ class Home extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: SizedBox(
-                height: tileHeight * 5,
+                height: tileHeight * 4.7,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
