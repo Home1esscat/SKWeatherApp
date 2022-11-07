@@ -26,7 +26,22 @@ class WeatherApi {
     return cityWeatherModel;
   }
 
-  Future<CitiesSuggestionsModel> getCitySuggestion(String city) async {
+  Future<CityWeatherModel> getWeatherInCityByID(String cityID) async {
+    var params = {'id': cityID, 'appid': openWeatherApiKey, 'units': 'metric'};
+
+    var uri = Uri.https(baseURL, getWeatherByCityName, params);
+
+    var request = await http.get(uri);
+
+    CityWeatherModel cityWeatherModel =
+        CityWeatherModel.fromJson(json.decode(request.body));
+
+    print(cityWeatherModel.name);
+
+    return cityWeatherModel;
+  }
+
+  Future<List<CityList>> getCitySuggestion(String city) async {
     var params = {'q': city, 'appid': openWeatherApiKey, 'units': 'metric'};
 
     var uri = Uri.https(baseURL, getCitiesSuggestion, params);
@@ -36,10 +51,8 @@ class WeatherApi {
     CitiesSuggestionsModel citiesSuggestionsModel =
         CitiesSuggestionsModel.fromJson(json.decode(request.body));
 
-    print(citiesSuggestionsModel.count.toString() +
-        '//' +
-        citiesSuggestionsModel.list![0].sys!.country.toString());
+    List<CityList> suggestions = citiesSuggestionsModel.list!.toList();
 
-    return citiesSuggestionsModel;
+    return suggestions;
   }
 }

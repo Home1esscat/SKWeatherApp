@@ -20,4 +20,18 @@ class WeatherCubit extends Cubit<WeatherState> {
       );
     }
   }
+
+  Future<void> getWeatherById(String id) async {
+    try {
+      emit(WeatherLoadingState());
+      final weather = await weatherApi.getWeatherInCityByID(id);
+      emit(WeatherLoadedState(cityWeatherModel: weather));
+    } catch (e) {
+      emit(
+        WeatherErrorState(
+          errorMessage: e.toString(),
+        ),
+      );
+    }
+  }
 }
