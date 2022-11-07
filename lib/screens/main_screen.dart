@@ -10,7 +10,6 @@ import 'package:weather_app/helpers/custom_colors.dart';
 import 'package:weather_app/helpers/strings.dart';
 import 'package:weather_app/screens/faq_screen.dart';
 import '../bloc/suggestion_cities_cubit.dart';
-import 'package:weather_app/helpers/strings.dart';
 import '../helpers/utils.dart';
 import 'cities_grid_screen.dart';
 
@@ -33,11 +32,16 @@ class Home extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/bg_hero_day.jpg"),
-                  fit: BoxFit.cover,
-                ),
+              decoration: BoxDecoration(
+                image: Utils.isDayTime()
+                    ? const DecorationImage(
+                        image: AssetImage("assets/images/bg_hero_day.jpg"),
+                        fit: BoxFit.cover,
+                      )
+                    : const DecorationImage(
+                        image: AssetImage("assets/images/bg_hero_night.jpg"),
+                        fit: BoxFit.cover,
+                      ),
               ),
               height: screenHeight,
               child: Stack(

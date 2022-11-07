@@ -63,7 +63,9 @@ class SimpleCustomAppBar extends StatelessWidget {
 
                         //searchData(uiCubit, cubitSuggestion);
                       },
-                      fillColor: Colors.lightBlue,
+                      fillColor: Utils.isDayTime()
+                          ? Colors.lightBlue
+                          : Colors.blueGrey,
                       shape: const CircleBorder(),
                       child: const Icon(
                         color: Colors.white,
