@@ -11,6 +11,7 @@ class Utils {
     );
   }
 
+  //Day and Night Theme
   static bool isDayTime() {
     bool isDayTime;
     var now = DateTime.now();

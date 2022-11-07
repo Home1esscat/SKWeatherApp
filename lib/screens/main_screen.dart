@@ -114,45 +114,53 @@ class Home extends StatelessWidget {
               child: BlocBuilder<CitySuggestionCubit, CitySuggestionState>(
                 builder: (context, state) {
                   if (state is CitySuggestionLoaded) {
-                    return Padding(
-                      padding: const EdgeInsets.fromLTRB(18, 20, 18, 0),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(30),
+                    return Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(30),
+                              ),
+                            ),
+                            // height: 100,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: state.cityListModel.length,
+                                  itemBuilder: (context, index) {
+                                    return InkWell(
+                                      onTap: () => {
+                                        FocusManager.instance.primaryFocus
+                                            ?.unfocus(),
+                                        cubit.getWeatherById(
+                                          state.cityListModel[index].id
+                                              .toString(),
+                                        ),
+                                        uiCubit.changeSuggestionState(
+                                            !uiCubit.state.showSuggstion)
+                                      },
+                                      child: SizedBox(
+                                        height: 40,
+                                        child: Text(
+                                            '${state.cityListModel[index].name!}, ${state.cityListModel[index].sys!.country!}'),
+                                      ),
+                                    );
+                                  }),
+                            ),
                           ),
                         ),
-                        height: 100,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: ListView.builder(
-                              itemCount: state.cityListModel.length,
-                              itemBuilder: (context, index) {
-                                return InkWell(
-                                  onTap: () => {
-                                    FocusManager.instance.primaryFocus
-                                        ?.unfocus(),
-                                    cubit.getWeatherById(
-                                      state.cityListModel[index].id.toString(),
-                                    ),
-                                    uiCubit.changeSuggestionState(
-                                        !uiCubit.state.showSuggstion)
-                                  },
-                                  child: SizedBox(
-                                    height: 40,
-                                    child: Text(
-                                        '${state.cityListModel[index].name!}, ${state.cityListModel[index].sys!.country!}'),
-                                  ),
-                                );
-                              }),
-                        ),
-                      ),
+                      ],
                     );
                   }
                   if (state is CitySuggestionError) {
                     return Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                      padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
                       child: Container(
                         decoration: const BoxDecoration(
                           color: Colors.white,
@@ -205,7 +213,7 @@ class Home extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: tileHeight * 4.5, right: 16, left: 16),
       child: Container(
-        height: tileHeight * 4.7,
+        height: tileHeight * 4.6,
         decoration: const BoxDecoration(
           color: CustomColors.transparentWhite,
           borderRadius: BorderRadius.all(
@@ -223,7 +231,7 @@ class Home extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: tileHeight * 4.5, right: 16, left: 16),
       child: Container(
-        height: tileHeight * 4.7,
+        height: tileHeight * 4.6,
         decoration: const BoxDecoration(
           color: CustomColors.transparentWhite,
           borderRadius: BorderRadius.all(
@@ -261,8 +269,8 @@ class Home extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: SizedBox(
-                height: tileHeight * 4.7,
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Row(
