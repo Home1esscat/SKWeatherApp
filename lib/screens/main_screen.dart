@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:weather_app/appbar/simple_custom_app_bar.dart';
+import 'package:weather_app/bloc/suggestion_cities_state.dart';
 import 'package:weather_app/bloc/suggestions_popup_cubit.dart';
 import 'package:weather_app/bloc/suggestions_popup_state.dart';
 import 'package:weather_app/bloc/weather_info_cubit.dart';
 import 'package:weather_app/bloc/weather_info_state.dart';
 import 'package:weather_app/helpers/custom_colors.dart';
+import 'package:weather_app/helpers/strings.dart';
 import 'package:weather_app/screens/faq_screen.dart';
 import '../bloc/suggestion_cities_cubit.dart';
+import 'package:weather_app/helpers/strings.dart';
 import '../helpers/utils.dart';
 import 'cities_grid_screen.dart';
 
@@ -105,42 +107,65 @@ class Home extends StatelessWidget {
       child: uiCubit.state.showSuggstion
           ? Padding(
               padding: EdgeInsets.only(top: tileHeight * 3),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
-                child: Container(
-                  height: 100,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(30),
-                    ),
-                  ),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: ListView.builder(
-                        itemCount: cubitSuggestion.internalList.length,
-                        itemBuilder: (context, index) {
-                          return InkWell(
-                            onTap: () => {
-                              FocusManager.instance.primaryFocus?.unfocus(),
-                              cubit.getWeatherById(cubitSuggestion
-                                  .internalList[index].id
-                                  .toString()),
-                              uiCubit.changeSuggestionState(
-                                  !uiCubit.state.showSuggstion)
-                            },
-                            child: SizedBox(
-                              height: 40,
-                              child: Text(
-                                  '${cubitSuggestion.internalList[index].name!}, ${cubitSuggestion.internalList[index].sys!.country!}'),
-                            ),
-                          );
-                        },
+              child: BlocBuilder<CitySuggestionCubit, CitySuggestionState>(
+                builder: (context, state) {
+                  if (state is CitySuggestionLoaded) {
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(18, 20, 18, 0),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(30),
+                          ),
+                        ),
+                        height: 100,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: ListView.builder(
+                              itemCount: state.cityListModel.length,
+                              itemBuilder: (context, index) {
+                                return InkWell(
+                                  onTap: () => {
+                                    FocusManager.instance.primaryFocus
+                                        ?.unfocus(),
+                                    cubit.getWeatherById(
+                                      state.cityListModel[index].id.toString(),
+                                    ),
+                                    uiCubit.changeSuggestionState(
+                                        !uiCubit.state.showSuggstion)
+                                  },
+                                  child: SizedBox(
+                                    height: 40,
+                                    child: Text(
+                                        '${state.cityListModel[index].name!}, ${state.cityListModel[index].sys!.country!}'),
+                                  ),
+                                );
+                              }),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
+                    );
+                  }
+                  if (state is CitySuggestionError) {
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(30),
+                          ),
+                        ),
+                        height: 100,
+                        child: const Center(
+                          child: Text(Strings.cityNotFoundHint),
+                        ),
+                      ),
+                    );
+                  } else {
+                    return Container(height: 100, color: Colors.blue);
+                  }
+                },
               ),
             )
           : Container(),

@@ -12,17 +12,17 @@ class CitySuggestionCubit extends Cubit<CitySuggestionState> {
   List<CityList> internalList = [];
 
   Future<void> setWeather(List<CityList> list) async {
-    try {
+    if (list.isEmpty) {
+      emit(
+        CitySuggestionError(
+          errorMessage: 'ERROR',
+        ),
+      );
+    } else {
       emit(CitySuggestionEmpty());
       final listCities = list;
       emit(CitySuggestionLoaded(cityListModel: listCities));
       internalList = list;
-    } catch (e) {
-      emit(
-        CitySuggestionError(
-          errorMessage: e.toString(),
-        ),
-      );
     }
   }
 

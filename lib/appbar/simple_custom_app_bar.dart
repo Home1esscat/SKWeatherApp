@@ -56,8 +56,11 @@ class SimpleCustomAppBar extends StatelessWidget {
                     child: RawMaterialButton(
                       elevation: 0,
                       onPressed: () {
-                        Utils.searchData(uiCubit, cubitSuggestion, weatherApi,
-                            _controller.text);
+                        if (_controller.text.isNotEmpty) {
+                          Utils.searchData(uiCubit, cubitSuggestion, weatherApi,
+                              _controller.text);
+                        }
+
                         //searchData(uiCubit, cubitSuggestion);
                       },
                       fillColor: Colors.lightBlue,
