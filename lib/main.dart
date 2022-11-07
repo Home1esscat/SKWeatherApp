@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/bloc/cities_suggestion_cubit.dart';
-import 'package:weather_app/bloc/suggestions_cubit.dart';
-import 'package:weather_app/bloc/suggestions_state.dart';
+import 'package:weather_app/bloc/suggestion_cities_cubit.dart';
+import 'package:weather_app/bloc/suggestions_popup_cubit.dart';
 import 'package:weather_app/screens/main_screen.dart';
 import 'package:weather_app/theme/app_theme.dart';
-import 'package:flutter/rendering.dart';
 
 import 'api/weather_api.dart';
-import 'bloc/weather_cubit.dart';
+import 'bloc/weather_info_cubit.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider<WeatherCubit>(
-          create: (context) => WeatherCubit()..getWeather('Odessa'),
+          create: (context) => WeatherCubit()..getWeatherByName('Odessa'),
         ),
         Provider<SuggestionsCubit>(
           create: (context) => SuggestionsCubit(),

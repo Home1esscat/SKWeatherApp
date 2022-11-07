@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:weather_app/bloc/cities_suggestion_state.dart';
+import 'package:weather_app/bloc/suggestion_cities_state.dart';
 
 import '../api/models/city_suggestiond_model.dart';
 import '../api/weather_api.dart';
@@ -26,7 +26,7 @@ class CitySuggestionCubit extends Cubit<CitySuggestionState> {
     }
   }
 
-  Future<List<CityList>> getWeather(List<CityList> list) async {
+  Future<List<CityList>> getSuggestionsCityList(List<CityList> list) async {
     return internalList;
   }
 }

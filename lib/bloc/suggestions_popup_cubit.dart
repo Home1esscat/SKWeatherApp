@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:weather_app/bloc/suggestions_state.dart';
+import 'package:weather_app/bloc/suggestions_popup_state.dart';
 
 class SuggestionsCubit extends Cubit<SuggestionsState> {
   SuggestionsCubit() : super(const SuggestionsState(showSuggstion: false));

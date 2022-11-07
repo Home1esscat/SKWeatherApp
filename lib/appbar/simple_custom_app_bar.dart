@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/api/weather_api.dart';
-import 'package:weather_app/bloc/cities_suggestion_cubit.dart';
+import 'package:weather_app/bloc/suggestion_cities_cubit.dart';
 import 'package:weather_app/helpers/strings.dart';
 import 'package:weather_app/helpers/utils.dart';
 
-import '../bloc/suggestions_cubit.dart';
+import '../bloc/suggestions_popup_cubit.dart';
 
 class SimpleCustomAppBar extends StatelessWidget {
   SimpleCustomAppBar({super.key});

@@ -12,41 +12,42 @@ class WeatherApi {
   String getCitiesSuggestion = '/data/2.5/find';
 
   Future<CityWeatherModel> getWeatherInCity(String city) async {
-    var params = {'q': city, 'appid': openWeatherApiKey, 'units': 'metric'};
+    Map<String, String> params = {
+      'q': city,
+      'appid': openWeatherApiKey,
+      'units': 'metric'
+    };
 
-    var uri = Uri.https(baseURL, getWeatherByCityName, params);
-
-    var request = await http.get(uri);
+    var request =
+        await http.get(Uri.https(baseURL, getWeatherByCityName, params));
 
     CityWeatherModel cityWeatherModel =
         CityWeatherModel.fromJson(json.decode(request.body));
-
-    print(cityWeatherModel.name);
 
     return cityWeatherModel;
   }
 
   Future<CityWeatherModel> getWeatherInCityByID(String cityID) async {
-    var params = {'id': cityID, 'appid': openWeatherApiKey, 'units': 'metric'};
+    Map<String, String> params = {
+      'id': cityID,
+      'appid': openWeatherApiKey,
+      'units': 'metric'
+    };
 
-    var uri = Uri.https(baseURL, getWeatherByCityName, params);
-
-    var request = await http.get(uri);
+    var request =
+        await http.get(Uri.https(baseURL, getWeatherByCityName, params));
 
     CityWeatherModel cityWeatherModel =
         CityWeatherModel.fromJson(json.decode(request.body));
-
-    print(cityWeatherModel.name);
 
     return cityWeatherModel;
   }
 
   Future<List<CityList>> getCitySuggestion(String city) async {
-    var params = {'q': city, 'appid': openWeatherApiKey, 'units': 'metric'};
+    Map<String, String> params = {'q': city, 'appid': openWeatherApiKey};
 
-    var uri = Uri.https(baseURL, getCitiesSuggestion, params);
-
-    var request = await http.get(uri);
+    var request =
+        await http.get(Uri.https(baseURL, getCitiesSuggestion, params));
 
     CitiesSuggestionsModel citiesSuggestionsModel =
         CitiesSuggestionsModel.fromJson(json.decode(request.body));
