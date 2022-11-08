@@ -18,11 +18,7 @@ class Utils {
     String currentTimeString = DateFormat('HH').format(now).toString();
     int currentTimeInt = int.parse(currentTimeString);
 
-    if (currentTimeInt <= 6 || currentTimeInt >= 17) {
-      isDayTime = false;
-    } else {
-      isDayTime = true;
-    }
+    isDayTime = currentTimeInt <= 6 || currentTimeInt >= 17 ? false : true;
     return isDayTime;
   }
 
