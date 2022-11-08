@@ -1,16 +1,28 @@
-# weather_app
+# Simple Weather App for SteelKiwi
 
-A new Flutter project.
+## Features
+- Loads weather data including icons from openweather.org 
+- Supports different screen sizes (Tested well on Pixel 2, Pixel 3, Pixel 4xl, Pixel 3a)
+- Automatically Day/Night Theme
+- Year value in the footer is dynamic.
+ 
+## References
+ 
+- UI Concept :  
+- https://www.figma.com/file/MV15v0asVZlLyYCJvoXXth/SK-Internship-Weather-App
+ 
+- Build-APK :  
+- https://drive.google.com/file/d/1buUl4WBnMcrBOnt-2BlXtuIMEmXHsqNo/view?usp=sharing
 
-## Getting Started
+## Installing
 
-This project is a starting point for a Flutter application.
+- Simply download the installation file from Google Drive, and install it, or clone the project to your local machine and run
 
-A few resources to get you started if this is your first Flutter project:
+- You can also use "flutter build apk --release" in the terminal of your development environment
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![combine_images (2)](https://user-images.githubusercontent.com/15833765/200519064-e476228b-7ff8-4d6e-a27c-392c34a175ad.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+ 
+
+ 
