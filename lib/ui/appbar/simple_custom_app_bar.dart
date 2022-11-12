@@ -1,17 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/api/weather_api.dart';
-import 'package:weather_app/bloc/suggestion_cities_cubit.dart';
+import 'package:weather_app/bloc/suggestion_cities/suggestion_cities_cubit.dart';
 import 'package:weather_app/helpers/strings.dart';
 import 'package:weather_app/helpers/utils.dart';
 
-import '../bloc/suggestions_popup_cubit.dart';
+import '../bloc/suggestions_popup/suggestions_popup_cubit.dart';
 
-class SimpleCustomAppBar extends StatelessWidget {
-  SimpleCustomAppBar({super.key});
+class SimpleCustomAppBar extends StatefulWidget {
+  const SimpleCustomAppBar({super.key});
 
-  final _controller = TextEditingController();
-  final WeatherApi weatherApi = WeatherApi();
+  @override
+  State<SimpleCustomAppBar> createState() => _SimpleCustomAppBarState();
+}
+
+class _SimpleCustomAppBarState extends State<SimpleCustomAppBar> {
+  late final TextEditingController _controller;
+  late final WeatherApi _weatherApi;
+
+  @override
+  void initState() {
+    _controller = TextEditingController();
+    _weatherApi = WeatherApi();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +49,7 @@ class SimpleCustomAppBar extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 12),
                     child: TextField(
                       onSubmitted: (value) {
-                        Utils.searchData(uiCubit, cubitSuggestion, weatherApi,
+                        searchData(uiCubit, cubitSuggestion, _weatherApi,
                             _controller.text);
                       },
                       textInputAction: TextInputAction.search,
@@ -57,11 +69,9 @@ class SimpleCustomAppBar extends StatelessWidget {
                       elevation: 0,
                       onPressed: () {
                         if (_controller.text.isNotEmpty) {
-                          Utils.searchData(uiCubit, cubitSuggestion, weatherApi,
+                          searchData(uiCubit, cubitSuggestion, _weatherApi,
                               _controller.text);
                         }
-
-                        //searchData(uiCubit, cubitSuggestion);
                       },
                       fillColor: Utils.isDayTime()
                           ? Colors.lightBlue
@@ -81,5 +91,19 @@ class SimpleCustomAppBar extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  void searchData(SuggestionsCubit uiCubit, CitySuggestionCubit cubitSuggestion,
+      WeatherApi weatherApi, String textFromController) {
+    weatherApi.getCitySuggestion(textFromController).then((value) {
+      uiCubit.changeSuggestionState(true);
+      cubitSuggestion.setWeather(value);
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }

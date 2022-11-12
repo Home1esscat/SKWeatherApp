@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/appbar/simple_custom_app_bar.dart';
-import 'package:weather_app/bloc/suggestion_cities_state.dart';
-import 'package:weather_app/bloc/suggestions_popup_cubit.dart';
-import 'package:weather_app/bloc/suggestions_popup_state.dart';
-import 'package:weather_app/bloc/weather_info_cubit.dart';
-import 'package:weather_app/bloc/weather_info_state.dart';
+import 'package:weather_app/bloc/suggestions_popup/suggestions_popup_cubit.dart';
+import 'package:weather_app/bloc/suggestions_popup/suggestions_popup_state.dart';
+import 'package:weather_app/bloc/weather_info/weather_info_cubit.dart';
+import 'package:weather_app/bloc/weather_info/weather_info_state.dart';
 import 'package:weather_app/helpers/custom_colors.dart';
 import 'package:weather_app/helpers/strings.dart';
-import 'package:weather_app/screens/faq_screen.dart';
-import '../bloc/suggestion_cities_cubit.dart';
+import 'package:weather_app/screens/faq_widget.dart';
+import '../bloc/suggestion_cities/suggestion_cities_cubit.dart';
+import '../bloc/suggestion_cities/suggestion_cities_state.dart';
 import '../helpers/utils.dart';
-import 'cities_grid_screen.dart';
+import 'cities_widget.dart';
 
-class Home extends StatelessWidget {
-  Home({super.key});
+class MainScreen extends StatelessWidget {
+  MainScreen({super.key});
 
   final ScrollController _scrollController = ScrollController();
 
@@ -113,7 +113,7 @@ class Home extends StatelessWidget {
               padding: EdgeInsets.only(top: tileHeight * 3),
               child: BlocBuilder<CitySuggestionCubit, CitySuggestionState>(
                 builder: (context, state) {
-                  if (state is CitySuggestionLoaded) {
+                  if (state is CitySuggestionLoadedState) {
                     return Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -158,7 +158,7 @@ class Home extends StatelessWidget {
                       ],
                     );
                   }
-                  if (state is CitySuggestionError) {
+                  if (state is CitySuggestionErrorState) {
                     return Padding(
                       padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
                       child: Container(

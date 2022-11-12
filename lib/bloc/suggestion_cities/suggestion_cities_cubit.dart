@@ -1,27 +1,26 @@
 import 'package:bloc/bloc.dart';
-import 'package:weather_app/bloc/suggestion_cities_state.dart';
-
-import '../api/models/city_suggestiond_model.dart';
-import '../api/weather_api.dart';
+import 'package:weather_app/api/models/city_suggestiond_model.dart';
+import 'package:weather_app/api/weather_api.dart';
+import 'package:weather_app/bloc/suggestion_cities/suggestion_cities_state.dart';
 
 class CitySuggestionCubit extends Cubit<CitySuggestionState> {
   final WeatherApi weatherApi = WeatherApi();
 
-  CitySuggestionCubit() : super(CitySuggestionEmpty());
+  CitySuggestionCubit() : super(CitySuggestionEmptyState());
 
   List<CityList> internalList = [];
 
   Future<void> setWeather(List<CityList> list) async {
     if (list.isEmpty) {
       emit(
-        CitySuggestionError(
+        CitySuggestionErrorState(
           errorMessage: 'ERROR',
         ),
       );
     } else {
-      emit(CitySuggestionEmpty());
+      emit(CitySuggestionEmptyState());
       final listCities = list;
-      emit(CitySuggestionLoaded(cityListModel: listCities));
+      emit(CitySuggestionLoadedState(cityListModel: listCities));
       internalList = list;
     }
   }

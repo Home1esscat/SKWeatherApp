@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/helpers/strings.dart';
 
+class Cities {
+  String name;
+  String image;
+
+  Cities({required this.name, required this.image});
+}
+
 class CitiesGrid extends StatelessWidget {
   const CitiesGrid({
     Key? key,
@@ -10,10 +17,10 @@ class CitiesGrid extends StatelessWidget {
     required this.onLondonPress,
   }) : super(key: key);
 
-  final Function onNewYorkPress;
-  final Function onLondonPress;
-  final Function onDubaiPress;
-  final Function onParisPress;
+  final VoidCallback onNewYorkPress;
+  final VoidCallback onLondonPress;
+  final VoidCallback onDubaiPress;
+  final VoidCallback onParisPress;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +28,7 @@ class CitiesGrid extends StatelessWidget {
 
     return Column(
       children: [
-        const SizedBox(
-          height: 70,
-        ),
+        const SizedBox(height: 70),
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Text(
@@ -31,11 +36,9 @@ class CitiesGrid extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
           ),
         ),
-        const SizedBox(
-          height: 35,
-        ),
+        const SizedBox(height: 35),
         GestureDetector(
-          onTap: () => {onNewYorkPress()},
+          onTap: onNewYorkPress,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Stack(
@@ -44,9 +47,7 @@ class CitiesGrid extends StatelessWidget {
                 Container(
                   height: cardHeight,
                   decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(30),
-                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(30)),
                     image: DecorationImage(
                       image: AssetImage("assets/images/bg_nyc.jpg"),
                       fit: BoxFit.cover,
@@ -76,7 +77,7 @@ class CitiesGrid extends StatelessWidget {
           ),
         ),
         GestureDetector(
-          onTap: () => {onLondonPress()},
+          onTap: onLondonPress,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Stack(
@@ -117,7 +118,7 @@ class CitiesGrid extends StatelessWidget {
           ),
         ),
         GestureDetector(
-          onTap: () => {onDubaiPress()},
+          onTap: onDubaiPress,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Stack(
@@ -158,7 +159,7 @@ class CitiesGrid extends StatelessWidget {
           ),
         ),
         GestureDetector(
-          onTap: () => {onParisPress()},
+          onTap: onParisPress,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Stack(

@@ -7,14 +7,15 @@ import 'package:weather_app/api/models/city_weather_model.dart';
 import 'api_key.dart';
 
 class WeatherApi {
-  String baseURL = 'api.openweathermap.org';
-  String getWeatherByCityName = 'data/2.5/weather';
-  String getCitiesSuggestion = '/data/2.5/find';
+  static const String baseURL = 'api.openweathermap.org';
+  static const String getWeatherByCityName = 'data/2.5/weather';
+  static const String getCitiesSuggestion = '/data/2.5/find';
+  static const apiKey = openWeatherApiKey;
 
   Future<CityWeatherModel> getWeatherInCity(String city) async {
     Map<String, String> params = {
       'q': city,
-      'appid': openWeatherApiKey,
+      'appid': apiKey,
       'units': 'metric'
     };
 
@@ -30,7 +31,7 @@ class WeatherApi {
   Future<CityWeatherModel> getWeatherInCityByID(String cityID) async {
     Map<String, String> params = {
       'id': cityID,
-      'appid': openWeatherApiKey,
+      'appid': apiKey,
       'units': 'metric'
     };
 
@@ -44,7 +45,7 @@ class WeatherApi {
   }
 
   Future<List<CityList>> getCitySuggestion(String city) async {
-    Map<String, String> params = {'q': city, 'appid': openWeatherApiKey};
+    Map<String, String> params = {'q': city, 'appid': apiKey};
 
     var request =
         await http.get(Uri.https(baseURL, getCitiesSuggestion, params));
@@ -52,7 +53,7 @@ class WeatherApi {
     CitiesSuggestionsModel citiesSuggestionsModel =
         CitiesSuggestionsModel.fromJson(json.decode(request.body));
 
-    List<CityList> suggestions = citiesSuggestionsModel.list!.toList();
+    List<CityList> suggestions = citiesSuggestionsModel.list.toList();
 
     return suggestions;
   }
