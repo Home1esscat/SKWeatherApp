@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/appbar/simple_custom_app_bar.dart';
+import 'package:weather_app/ui/appbar/simple_custom_app_bar.dart';
 import 'package:weather_app/bloc/suggestions_popup/suggestions_popup_cubit.dart';
 import 'package:weather_app/bloc/suggestions_popup/suggestions_popup_state.dart';
 import 'package:weather_app/bloc/weather_info/weather_info_cubit.dart';
 import 'package:weather_app/bloc/weather_info/weather_info_state.dart';
 import 'package:weather_app/helpers/custom_colors.dart';
 import 'package:weather_app/helpers/strings.dart';
-import 'package:weather_app/screens/faq_widget.dart';
-import '../bloc/suggestion_cities/suggestion_cities_cubit.dart';
-import '../bloc/suggestion_cities/suggestion_cities_state.dart';
-import '../helpers/utils.dart';
-import 'cities_widget.dart';
+import 'package:weather_app/ui/widgets/faq_widget.dart';
+import '../../bloc/suggestion_cities/suggestion_cities_cubit.dart';
+import '../../bloc/suggestion_cities/suggestion_cities_state.dart';
+import '../../helpers/utils.dart';
+import '../widgets/cities_widget.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});
@@ -50,7 +50,7 @@ class MainScreen extends StatelessWidget {
                     alignment: Alignment.topCenter,
                     child: Padding(
                       padding: EdgeInsets.only(top: tileHeight * 2),
-                      child: SimpleCustomAppBar(),
+                      child: const SimpleCustomAppBar(),
                     ),
                   ),
                   BlocBuilder<WeatherCubit, WeatherState>(
@@ -148,7 +148,7 @@ class MainScreen extends StatelessWidget {
                                       child: SizedBox(
                                         height: 40,
                                         child: Text(
-                                            '${state.cityListModel[index].name!}, ${state.cityListModel[index].sys!.country!}'),
+                                            '${state.cityListModel[index].name}, ${state.cityListModel[index].sys.country}'),
                                       ),
                                     );
                                   }),

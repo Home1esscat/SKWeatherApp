@@ -5,7 +5,7 @@ import 'package:weather_app/bloc/suggestion_cities/suggestion_cities_cubit.dart'
 import 'package:weather_app/helpers/strings.dart';
 import 'package:weather_app/helpers/utils.dart';
 
-import '../bloc/suggestions_popup/suggestions_popup_cubit.dart';
+import '../../bloc/suggestions_popup/suggestions_popup_cubit.dart';
 
 class SimpleCustomAppBar extends StatefulWidget {
   const SimpleCustomAppBar({super.key});

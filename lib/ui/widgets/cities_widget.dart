@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/helpers/strings.dart';
-
-class Cities {
-  String name;
-  String image;
-
-  Cities({required this.name, required this.image});
-}
+import 'city_card.dart';
 
 class CitiesGrid extends StatelessWidget {
   const CitiesGrid({
@@ -24,7 +18,7 @@ class CitiesGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double cardHeight = MediaQuery.of(context).size.height / 3;
+    final double cardHeight = MediaQuery.of(context).size.height / 3;
 
     return Column(
       children: [
@@ -37,168 +31,26 @@ class CitiesGrid extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 35),
-        GestureDetector(
-          onTap: onNewYorkPress,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Stack(
-              alignment: AlignmentDirectional.bottomCenter,
-              children: [
-                Container(
-                  height: cardHeight,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(30)),
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/bg_nyc.jpg"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(30),
-                        ),
-                        color: Colors.white),
-                    height: cardHeight / 6,
-                    child: const Text(
-                      'New York',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-        GestureDetector(
-          onTap: onLondonPress,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Stack(
-              alignment: AlignmentDirectional.bottomCenter,
-              children: [
-                Container(
-                  height: cardHeight,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(30),
-                    ),
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/bg_london.jpg"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(30),
-                        ),
-                        color: Colors.white),
-                    height: cardHeight / 6,
-                    child: const Text(
-                      'London',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-        GestureDetector(
-          onTap: onDubaiPress,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Stack(
-              alignment: AlignmentDirectional.bottomCenter,
-              children: [
-                Container(
-                  height: cardHeight,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(30),
-                    ),
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/bg_dubai.jpg"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(30),
-                        ),
-                        color: Colors.white),
-                    height: cardHeight / 6,
-                    child: const Text(
-                      'Dubai',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-        GestureDetector(
-          onTap: onParisPress,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Stack(
-              alignment: AlignmentDirectional.bottomCenter,
-              children: [
-                Container(
-                  height: cardHeight,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(30),
-                    ),
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/bg_paris.jpg"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(30),
-                        ),
-                        color: Colors.white),
-                    height: cardHeight / 6,
-                    child: const Text(
-                      'Paris',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
+        CityCard(
+            cardHeight: cardHeight,
+            cityImg: 'assets/images/bg_nyc.jpg',
+            cityName: 'New York',
+            onCityTap: onNewYorkPress),
+        CityCard(
+            cardHeight: cardHeight,
+            cityImg: 'assets/images/bg_london.jpg',
+            cityName: 'London',
+            onCityTap: onLondonPress),
+        CityCard(
+            cardHeight: cardHeight,
+            cityImg: 'assets/images/bg_dubai.jpg',
+            cityName: 'Dubai',
+            onCityTap: onDubaiPress),
+        CityCard(
+            cardHeight: cardHeight,
+            cityImg: 'assets/images/bg_paris.jpg',
+            cityName: 'Paris',
+            onCityTap: onParisPress),
       ],
     );
   }

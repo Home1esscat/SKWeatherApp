@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/helpers/custom_colors.dart';
 import 'package:weather_app/helpers/utils.dart';
 
-import '../helpers/strings.dart';
+import '../../helpers/strings.dart';
 
 class FaqScreen extends StatefulWidget {
   const FaqScreen({super.key});
